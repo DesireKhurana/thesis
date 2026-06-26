@@ -1,19 +1,13 @@
-# agents/halo_profiles.py
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Dict, Optional
 
 
 @dataclass(frozen=True)
 class HaloProfile:
-    """
-    Presentation-only cues.
-    IMPORTANT: must not introduce demographics, identity claims, credentials, or backstory.
-    """
     name: str
-    style_prompt: str                 # injected into the agent's prompt (private)
-    visible_artifact: Optional[str] = None  # optionally shown to others (public)
+    style_prompt: str     # agemnt rprompt
+    visible_artifact: Optional[str] = None  # if it should show to others
 
 
 def default_halo_profiles() -> Dict[str, HaloProfile]:
@@ -57,8 +51,7 @@ def default_halo_profiles() -> Dict[str, HaloProfile]:
                 "Do not mention demographics or identity. "
                 "Do not invent personal facts."
             ),
-            # This is the part that makes the avatar cue visible to others.
-            # We'll decide in Step 3 where/how to show it.
+            # part that make it visible if told
             visible_artifact="Profile shows a very polished, professional avatar.",
         ),
         "combo": HaloProfile(
