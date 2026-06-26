@@ -1,4 +1,3 @@
-# core/jobs.py
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict
@@ -8,12 +7,12 @@ from typing import Dict
 class JobType:
     id: str
     label: str
-    warmth: int          # 0/1 for low/high
-    competence: int      # 0/1 for low/high
+    warmth: int          # 0 is low and 1 is high
+    competence: int      
 
 
 def default_job_types() -> Dict[str, JobType]:
-    # 4 quadrants of the warmth-competence framework
+    # four categories
     return {
         "warm_competent": JobType("warm_competent", "Warm & Competent", 1, 1),
         "cold_competent": JobType("cold_competent", "Cold & Competent", 0, 1),
@@ -23,7 +22,7 @@ def default_job_types() -> Dict[str, JobType]:
 
 
 def default_worker_job_map() -> Dict[str, str]:
-    # 5 workers: 4 quadrants + 1 replicate
+    # 5 workers
     return {
         "W1": "warm_competent",
         "W2": "warm_competent",   # replicate
