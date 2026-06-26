@@ -1,4 +1,3 @@
-# core/tasks.py
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,7 +10,7 @@ class Task:
     name: str
     prompt: str
 
-
+#definition of thw tasks
 def default_tasks() -> Dict[str, Task]:
     """
     Paper-faithful role/task categories.
