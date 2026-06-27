@@ -31,16 +31,13 @@ def test_ollama():
     print("[ollama]", r["message"]["content"].strip())
 
 def test_openai_compatible(label="openai"):
-    # Works for OpenAI AND OpenAI-compatible (Groq/DeepSeek/etc.) if you set BASE_URL
     from openai import OpenAI
     api_key = os.getenv("OPENAI_API_KEY") or os.getenv("GROQ_API_KEY") or os.getenv("DEEPSEEK_API_KEY")
     base_url = os.getenv("OPENAI_BASE_URL") or os.getenv("GROQ_BASE_URL") or os.getenv("DEEPSEEK_BASE_URL")
     model = os.getenv("OPENAI_MODEL") or os.getenv("GROQ_MODEL") or os.getenv("DEEPSEEK_MODEL")
-
     if not api_key or not model:
         print(f"[{label}] missing API key or model env vars")
         return
-
     client = OpenAI(api_key=api_key, base_url=base_url) if base_url else OpenAI(api_key=api_key)
     messages = [{"role":"user","content":"Reply with exactly: OK"}]
     if model and "qwen" in model.lower():
@@ -71,12 +68,10 @@ def test_anthropic():
         temperature=0.0,
         messages=[{"role":"user","content":"Reply with exactly: OK"}],
     )
-    # anthropic returns content blocks
     out = "".join([b.text for b in msg.content if hasattr(b, "text")]).strip()
     print("[anthropic]", out)
 
 def test_gemini():
-    # using google-genai library
     from google import genai
     key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
