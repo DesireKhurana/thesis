@@ -19,8 +19,6 @@ The repository contains the main experiment code, the simulation code, the agent
 
 `smoke_test_backends.py` checks whether the selected model setup is working before a full run starts.
 
-`summarize_all_thesis_results.py` summarizes the saved results across model setups, seeds and conditions.
-
 ## Core code
 
 The folder named core contains the main simulation logic.
